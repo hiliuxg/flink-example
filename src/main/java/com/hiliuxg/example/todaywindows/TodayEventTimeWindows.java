@@ -41,7 +41,6 @@ public class TodayEventTimeWindows extends WindowAssigner<Object, TimeWindow> {
 
         //get the window up bound
         calendar.add(Calendar.DATE,1);
-        calendar.add(Calendar.MILLISECOND,1);
         long windowUpBound = calendar.getTimeInMillis() + 1 ;
 
         //assig windows
