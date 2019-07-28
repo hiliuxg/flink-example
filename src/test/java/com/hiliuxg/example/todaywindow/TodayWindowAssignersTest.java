@@ -26,14 +26,14 @@ public class TodayWindowAssignersTest {
      * @throws Exception
      */
     @Test
-    public void testMultiply() throws Exception {
+    public void testTodayPVUV() throws Exception {
 
         SimpleDateFormat sf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss") ;
         StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();
         env.setStreamTimeCharacteristic(TimeCharacteristic.EventTime);
         env.setParallelism(1);
 
-        DataStream<Tuple3<Long, Long,String>> ds = env.socketTextStream("10.16.6.189",9001)
+        DataStream<Tuple3<Long, Long,String>> ds = env.socketTextStream("localhost",9001)
                 .map(new MapFunction<String, Tuple3<Long, Long,String>>() {
             @Override
             public Tuple3<Long, Long,String> map(String value) throws Exception {
