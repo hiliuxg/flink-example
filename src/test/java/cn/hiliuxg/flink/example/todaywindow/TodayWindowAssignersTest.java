@@ -1,6 +1,6 @@
-package com.hiliuxg.example.todaywindow;
+package cn.hiliuxg.flink.example.todaywindow;
 
-import com.hiliuxg.example.todaywindows.TodayEventTimeWindows;
+import cn.hiliuxg.flink.example.todaywindows.TodayEventTimeWindows;
 import org.apache.flink.api.common.functions.MapFunction;
 import org.apache.flink.api.java.tuple.Tuple;
 import org.apache.flink.api.java.tuple.Tuple3;

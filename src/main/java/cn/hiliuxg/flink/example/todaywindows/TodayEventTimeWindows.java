@@ -1,4 +1,4 @@
-package com.hiliuxg.example.todaywindows;
+package cn.hiliuxg.flink.example.todaywindows;
 
 import org.apache.flink.api.common.ExecutionConfig;
 import org.apache.flink.api.common.typeutils.TypeSerializer;
