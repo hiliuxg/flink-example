@@ -30,23 +30,23 @@ public class TodayEventTimeWindows extends WindowAssigner<Object, TimeWindow> {
 
     public Collection<TimeWindow> assignWindows(Object element, long timestamp, WindowAssignerContext context) {
         Calendar calendar = Calendar.getInstance();
-        calendar.setTimeInMillis(timestamp);
-        calendar.set(Calendar.HOUR_OF_DAY,0);
+        calendar.setTimeInMillis(timestamp + offset);
+        calendar.set(Calendar.HOUR_OF_DAY,((Long)(Math.abs(offset) / 3600000)).intValue());
         calendar.set(Calendar.MINUTE,0);
         calendar.set(Calendar.SECOND,0);
         calendar.set(Calendar.MILLISECOND,0);
 
         //get the window start
-        long windowStart = calendar.getTimeInMillis() ;
+        long windowStart = calendar.getTimeInMillis();
 
         //get the window up bound
         calendar.add(Calendar.DATE,1);
-        long windowUpBound = calendar.getTimeInMillis() + 1 ;
 
+        long windowUpBound = calendar.getTimeInMillis() + 1 ;
         //assig windows
         long currentWindowEnd = TimeWindow.getWindowStartWithOffset(timestamp, offset, slide) + slide;
         List<TimeWindow> windows = new ArrayList<>((int) ((windowUpBound - currentWindowEnd) / slide));
-        for (long windowEnd = currentWindowEnd ; windowEnd < windowUpBound ;windowEnd += slide  ){
+        for (long windowEnd = currentWindowEnd ; windowEnd < windowUpBound ;windowEnd += slide){
             windows.add(new TimeWindow(windowStart,windowEnd));
         }
         return windows;
